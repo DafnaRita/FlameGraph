@@ -25,21 +25,26 @@
 # 13-Feb-2015	Brendan Gregg	Created this.
 # 20-Feb-2017      "      "     Added -u for unfoldall.
 
+echo "before JAVA_HOME=$JAVA_HOME"
+echo "user USER=$USER"
 JAVA_HOME=${JAVA_HOME:-/usr/lib/jvm/java-8-oracle}
 AGENT_HOME=${AGENT_HOME:-/usr/lib/jvm/perf-map-agent}  # from https://github.com/jvm-profiling-tools/perf-map-agent
 debug=0
 
 if [[ "$USER" != root ]]; then
+	echo $USER 
 	echo "ERROR: not root user? exiting..."
 	exit
 fi
 
 if [[ ! -x $JAVA_HOME ]]; then
 	echo "ERROR: JAVA_HOME not set correctly; edit $0 and fix"
+	echo "after JAVA_HOME=$JAVA_HOME" 
 	exit
 fi
 
 if [[ ! -x $AGENT_HOME ]]; then
+	echo $AGENT_HOME
 	echo "ERROR: AGENT_HOME not set correctly; edit $0 and fix"
 	exit
 fi
